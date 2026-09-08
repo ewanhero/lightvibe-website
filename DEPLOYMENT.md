@@ -9,9 +9,19 @@
 - 目前没有公开任何安装包，下载标注“准备中”。
 - 未操作阿里云服务器，不得影响其已有服务、组件、端口或代理配置。
 
-## 待完成
+## DNS 已配置，HTTPS 待完成
 
-易名验证已由用户完成，但浏览器控制连接报告 Debugger unattached；本次尚未提交任何 DNS 记录修改。恢复 Chrome 控制后，检查并保留现有记录，再配置两个域名的 GitHub Pages 解析。待域名生效、GitHub 签发证书后分别开启 HTTPS 强制跳转。不能把构建成功视为域名上线完成。
+2026-09-08 23:37（北京时间）：通过 Chrome 易名解析页面为 lightvibe.net 和 lightvibe.cn 分别添加以下记录，TTL 600、默认线路；每条均在 UI 显示正常，并通过 ns1.ename.net 权威查询核验。保留各域名原有两条 NS，不修改名称服务器。
+
+| 主机 | 类型 | 值 |
+| --- | --- | --- |
+| @ | A | 185.199.108.153 |
+| @ | A | 185.199.109.153 |
+| @ | A | 185.199.110.153 |
+| @ | A | 185.199.111.153 |
+| www | CNAME | ewanhero.github.io. |
+
+实测 lightvibe.net 的 HTTP 首页返回 GitHub 200；lightvibe.cn 的本机公共 DNS 缓存尚未更新。两个仓库 Pages 构建均为 built，但 https_certificate 仍为空、https_enforced 为 false；.net HTTPS 校验尚报证书域名不匹配，未绕过校验。等待公共 DNS 传播与 GitHub 证书签发后，核验两个域名和 www，再开启 HTTPS 强制跳转。不能把 DNS 保存成功视为 HTTPS 上线完成。
 
 ## 更新流程
 
